@@ -1,0 +1,40 @@
+- dataset:
+    id: llamaindex/ExtractBench
+    task_id: mean
+  value: 89.88
+  date: '2026-08-29'
+  source:
+    url: https://huggingface.co/datasets/llamaindex/ExtractBench
+    name: ExtractBench
+    user: boyang-runllama
+  notes: "Pipeline name: qwen3_8_flash_next_fp8_vllm_extract_oneshot_structured_output_file; served checkpoint: Qwen/Qwen3.8-Flash-Next-FP8"
+- dataset:
+    id: llamaindex/ExtractBench
+    task_id: short
+  value: 94.82
+  date: '2026-08-29'
+  source:
+    url: https://huggingface.co/datasets/llamaindex/ExtractBench
+    name: ExtractBench
+    user: boyang-runllama
+  notes: "Pipeline name: qwen3_8_flash_next_fp8_vllm_extract_oneshot_structured_output_file; served checkpoint: Qwen/Qwen3.8-Flash-Next-FP8"
+- dataset:
+    id: llamaindex/ExtractBench
+    task_id: medium
+  value: 87.81
+  date: '2026-08-29'
+  source:
+    url: https://huggingface.co/datasets/llamaindex/ExtractBench
+    name: ExtractBench
+    user: boyang-runllama
+  notes: "Pipeline name: qwen3_8_flash_next_fp8_vllm_extract_oneshot_structured_output_file; served checkpoint: Qwen/Qwen3.8-Flash-Next-FP8"
+- dataset:
+    id: llamaindex/ExtractBench
+    task_id: long
+  value: 37.74
+  date: '2026-08-29'
+  source:
+    url: https://huggingface.co/datasets/llamaindex/ExtractBench
+    name: ExtractBench
+    user: boyang-runllama
+  notes: "Pipeline name: qwen3_8_flash_next_fp8_vllm_extract_oneshot_structured_output_file; served checkpoint: Qwen/Qwen3.8-Flash-Next-FP8"
