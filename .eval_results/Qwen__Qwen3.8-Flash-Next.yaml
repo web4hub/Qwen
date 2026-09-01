@@ -1,0 +1,8 @@
+- dataset:
+    id: hkust-nlp/Toolathlon
+    task_id: toolathlon_verified
+  value: 73.5
+  date: "2026-08-27"
+  source:
+    url: https://huggingface.co/Qwen/Qwen3.8-Flash-Next
+    name: "Qwen/Qwen3.8-Flash-Next model card"
