@@ -4,6 +4,9 @@ license: other
 license_name: qwen-community-1.0
 license_link: LICENSE
 pipeline_tag: image-text-to-text
+language:
+- en
+- zh
 ---
 
 # Qwen3.8-Flash-Next
