@@ -93,7 +93,6 @@ We are excited to embark on this next chapter with you and welcome your feedback
 </style>
 
 ### Language
-
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:1200px;margin:0 auto;padding:16px 0">
 <table class="vl-table" style="width:100%;table-layout:fixed;border-collapse:collapse;font-size:13px">
 <thead><tr>
