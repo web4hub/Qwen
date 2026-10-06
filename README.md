@@ -25,10 +25,13 @@ As the frontier of foundation models pushes toward ever-larger parameter counts 
 ![Qwen3.8-Flash-Next Architecture](https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen3.8-Flash-Next/architecture.png)
 
 This experimental preview of the architecture that will underpin Qwen4 is built around a fundamental rethinking of how the core components of modern large language models (LLMs) interact at scale.
- 
+
+ ![Qwen3.8-Flash-Next Architecture](https://qianwen-res.oss-accelerate.aliyuncs.com/Qwen3.8-Flash-Next/architecture.png)
+
+
 ## Highlights
 
-Ah — you mean **the Qwen architecture diagram itself**. 👍
+
 
 ![Image](https://images.openai.com/static-rsc-4/S0RjAYxD0ez-9OC5qp_n-Nkid8qpTmOioeKxfnEKhS3bJEK40w70gmOIDQLHz5G5j9XeumVVFtMFxLBITHS3V78SILbKT17BviDJlUySC63U4xe1d3qRQbBXCCtY0cVEyHtbO-0eJlVVSW1bIDk6PhoCSOBZHONYmf8fuy8fxYKuLjB9KMs5St_xSedvz3Xp?purpose=fullsize)
 
