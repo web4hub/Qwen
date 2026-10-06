@@ -535,4 +535,43 @@ So the **big architectural idea** is not simply “Transformer + bigger context.
 
 **hybrid sequence modeling + selective global attention + sparse expert computation + multimodal positional encoding + long-context RoPE scaling.** 🚀
 
-And that's why your `layer_types`, `rope_parameters`, `mrope_section`, MoE settings, and activation setting should be treated as a coordinated architecture rather than random config knobs.
+`gelu_pytorch_tanh` is the **PyTorch-compatible GELU activation** that uses the tanh approximation.
+
+Mathematically:
+
+$$
+\operatorname{GELU}(x)
+\approx
+\frac{x}{2}
+\left(
+1+\tanh\left[
+\sqrt{\frac{2}{\pi}}
+\left(x+0.044715x^3\right)
+\right]
+\right)
+$$
+
+In PyTorch:
+
+```python
+import torch
+import torch.nn.functional as F
+
+x = torch.tensor([-2., -1., 0., 1., 2.])
+
+y = F.gelu(x, approximate="tanh")
+print(y)
+```
+
+For a Transformers model configuration, you would typically see:
+
+```json
+{
+  "hidden_act": "gelu_pytorch_tanh"
+}
+```
+
+This means the model uses the **tanh-approximated GELU**, rather than the exact Gaussian-error-function form.
+
+For your **Qwen4** work, if `config.json` specifies `gelu_pytorch_tanh`, it should generally be preserved exactly rather than changed just because the RoPE/YaRN context length was upgraded. The activation and the RoPE scaling are independent model components. 🚀
+
