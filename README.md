@@ -603,40 +603,44 @@ To achieve optimal performance, we recommend the following settings:
     - Modifying the model configuration file:
         
         In the `config.json` file, change the `rope_parameters` fields in `text_config` to:
-        ```json
-        {
-            "mrope_interleaved": true,
-            "mrope_section": [
-                11,
-                11,
-                10
-            ],
-            "rope_type": "yarn",
-            "rope_theta": 10000000,
-            "partial_rotary_factor": 0.25,
-            "factor": 4.0,
-            "original_max_position_embeddings": 262144
-        }
-        ```
+    ```json
+   "text_config": {
+    ...
+   "hidden_act": "gelu_pytorch_tanh",
+   "max_position_embeddings": 1048576,
+    ...
+   "rope_parameters": {
+    "mrope_interleaved": true,
+    "mrope_section": [11, 11, 10],
+    "partial_rotary_factor": 0.25,
+    "rope_theta": 50000000,
+    "rope_type": "yarn",
+    "factor": 4.0,
+    "original_max_position_embeddings": 262144
+   },
+   ...
+   }
+  ```
+  ```
+  - Passing command line arguments:
 
-    - Passing command line arguments:
-
-        For vLLM, you can use
-        ```shell
+    For vLLM, you can use
+  ```shell
         VLLM_ALLOW_LONG_MAX_MODEL_LEN=1 vllm serve ... --hf-overrides '{"text_config": {"rope_parameters": {"mrope_interleaved": true, "mrope_section": [11, 11, 10], "rope_type": "yarn", "rope_theta": 10000000, "partial_rotary_factor": 0.25, "factor": 4.0, "original_max_position_embeddings": 262144}}}' --max-model-len 1000000  
         ```
-
+  ```
         For SGLang, you can use
-        ```shell
+   ```shell
         SGLANG_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1 python -m sglang.launch_server ... --json-model-override-args '{"text_config": {"rope_parameters": {"mrope_interleaved": true, "mrope_section": [11, 11, 10], "rope_type": "yarn", "rope_theta": 10000000, "partial_rotary_factor": 0.25, "factor": 4.0, "original_max_position_embeddings": 262144}}}' --context-length 1000000
         ```
-
-        For TokenSpeed, you can use
-        ```shell
-        TOKENSPEED_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1 tokenspeed serve ... --hf-overrides '{"text_config": {"rope_parameters": {"mrope_interleaved": true, "mrope_section": [11, 11, 10], "rope_type": "yarn", "rope_theta": 10000000, "partial_rotary_factor": 0.25, "factor": 4.0, "original_max_position_embeddings": 262144}}}' --max-model-len 1000000  
-        ```
-    
-    > [!NOTE]
+  ```
+  
+For TokenSpeed, you can use
+```shell
+TOKENSPEED_ALLOW_OVERWRITE_LONGER_CONTEXT_LEN=1 tokenspeed serve ... --hf-overrides '{"text_config": {"rope_parameters": {"mrope_interleaved": true, "mrope_section": [11, 11, 10], "rope_type": "yarn", "rope_theta": 10000000, "partial_rotary_factor": 0.25, "factor": 4.0, "original_max_position_embeddings": 262144}}}' --max-model-len 1000000  
+```
+  
+> [!NOTE]
     > All the notable open-source frameworks implement static YaRN, which means the scaling factor remains constant regardless of input length, **potentially impacting performance on shorter texts.**
     > We advise modifying the `rope_parameters` configuration only when processing long contexts is required. 
     > It is also recommended to modify the `factor` as needed. For example, if the typical context length for your application is 524,288 tokens, it would be better to set `factor` as 2.0. 
