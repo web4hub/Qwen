@@ -153,4 +153,20 @@
     },
     "vision_end_token_id": 248054,
     "vision_start_token_id": 248053
+},
+"text_config": {
+  ...
+  "hidden_act": "gelu_pytorch_tanh",
+  "max_position_embeddings": 1048576,
+  ...
+  "rope_parameters": {
+    "mrope_interleaved": true,
+    "mrope_section": [11, 11, 10],
+    "partial_rotary_factor": 0.25,
+    "rope_theta": 50000000,
+    "rope_type": "yarn",
+    "factor": 4.0,
+    "original_max_position_embeddings": 262144
+  },
+  ...
 }
