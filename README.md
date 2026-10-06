@@ -28,7 +28,14 @@ This experimental preview of the architecture that will underpin Qwen4 is built 
  
 ## Highlights
 
-The first open-weight release under this architecture is Qwen3.8-Flash-Next, which introduces:
+Ah — you mean **the Qwen architecture diagram itself**. 👍
+
+![Image](https://images.openai.com/static-rsc-4/S0RjAYxD0ez-9OC5qp_n-Nkid8qpTmOioeKxfnEKhS3bJEK40w70gmOIDQLHz5G5j9XeumVVFtMFxLBITHS3V78SILbKT17BviDJlUySC63U4xe1d3qRQbBXCCtY0cVEyHtbO-0eJlVVSW1bIDk6PhoCSOBZHONYmf8fuy8fxYKuLjB9KMs5St_xSedvz3Xp?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/nAInzFixOXidUF7-0dc10OKMpmFnCaavknGIpIWe0s5ekTT01oI8KMR8vTcm25EKKwnhZYmqlTmAZBa6iKiNhpFylesERfXNCMa6p0qKrjSsAeaiSoWrVW7pHropKISJ3-ZdgLlywW2cYzSdY27O8K6mgJRYmcDIQHJv0metdpp7YqRRdt5sWSX4NmZYKW8K?purpose=fullsize)
+
+![Image](https://images.openai.com/static-rsc-4/toQVV_WGTPc3CTEzk0o4HLtTdQnuiTmR9slGLXrX4HQdNiQtE02lAGh8C7IYJqvBohfp2C5Zd3K-sCs-oXNB_VqZF5HJ5ZO49wfc5qLhJ3_rbAjIEH09iPRzu5IA8hzfONc4fj_dDZ6QR_OVbGiQehuwaIWHwbrddQwp-1wQYmAxUluJXpi_i5orS15BRm3q?purpose=fullsize)
+
 
 - **Hybrid Attention with QSA**: The Gated DeltaNet and Gated Attention pairing has been reworked into Gated DeltaNet and Qwen Sparse Attention (QSA). Rather than selecting individual tokens for processing, QSA operates at the micro-block level. This cuts long-context latency significantly, a critical gain as agentic workloads increasingly dominate real-world usage.
 - **Gated Residual**: Residual streams with normalization are what make deep LLM training manageable. Gated Residual modulates information flowing through widened residual streams via an element-wise, data-dependent read gate and a per-branch scalar write gate. This brings finer-grained expressiveness across layers while preserving training stability and keeping inference overhead low.
@@ -502,7 +509,82 @@ chat_response = client.chat.completions.create(
 
 print("Chat response:", chat_response)
 ```
+# Qwen4 Architecture
 
+```svg
+                         ┌──────────────────────┐
+                         │       Input Text     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │      Tokenizer       │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │    Token Embeddings  │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+              ┌────────────────────────────────────────┐
+              │          48-Layer Hybrid Stack         │
+              │                                        │
+              │  ┌──────────────────────────────────┐  │
+              │  │ Linear / Sequence Mixing Layers │  │
+              │  │              × 36               │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │      Full Attention Layers      │  │
+              │  │              × 12               │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │       MRoPE + YaRN Position     │  │
+              │  │                                  │  │
+              │  │  Native: 262,144 tokens         │  │
+              │  │  Extended: 1,048,576 tokens     │  │
+              │  │  YaRN factor: 4×                │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │          Sparse MoE              │  │
+              │  │                                  │  │
+              │  │       512 total experts          │  │
+              │  │       10 experts / token         │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │       GELU PyTorch Tanh          │  │
+              │  │     gelu_pytorch_tanh            │  │
+              │  └──────────────────────────────────┘  │
+              │                                        │
+              └────────────────────┬───────────────────┘
+                                   │
+                                   ▼
+                         ┌──────────────────────┐
+                         │   Final Normalization│
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │       LM Head        │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │       Logits         │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │    Next Token        │
+                         └──────────┬───────────┘
+                                    │
+                                    └──────► Autoregressive
+                                             Generation
+```
 
 ##### Instruct (or Non-Thinking) Mode
 
