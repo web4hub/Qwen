@@ -1,3 +1,163 @@
+# Qwen4 Architecture
+
+```svg
+                         ┌──────────────────────┐
+                         │       Input Text     │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │      Tokenizer       │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │    Token Embeddings  │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+              ┌────────────────────────────────────────┐
+              │          48-Layer Hybrid Stack         │
+              │                                        │
+              │  ┌──────────────────────────────────┐  │
+              │  │ Linear / Sequence Mixing Layers │  │
+              │  │              × 36               │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │      Full Attention Layers      │  │
+              │  │              × 12               │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │       MRoPE + YaRN Position     │  │
+              │  │                                  │  │
+              │  │  Native: 262,144 tokens         │  │
+              │  │  Extended: 1,048,576 tokens     │  │
+              │  │  YaRN factor: 4×                │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │          Sparse MoE              │  │
+              │  │                                  │  │
+              │  │       512 total experts          │  │
+              │  │       10 experts / token         │  │
+              │  └──────────────────────────────────┘  │
+              │                    │                   │
+              │  ┌──────────────────────────────────┐  │
+              │  │       GELU PyTorch Tanh          │  │
+              │  │     gelu_pytorch_tanh            │  │
+              │  └──────────────────────────────────┘  │
+              │                                        │
+              └────────────────────┬───────────────────┘
+                                   │
+                                   ▼
+                         ┌──────────────────────┐
+                         │   Final Normalization│
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │       LM Head        │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │       Logits         │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │    Next Token        │
+                         └──────────┬───────────┘
+                                    │
+                                    └──────► Autoregressive
+                                             Generation
+````
+
+## Configuration
+
+```json
+{
+  "max_position_embeddings": 1048576,
+  "hidden_act": "gelu_pytorch_tanh",
+  "rope_parameters": {
+    "rope_type": "yarn",
+    "rope_theta": 50000000,
+    "factor": 4.0,
+    "original_max_position_embeddings": 262144,
+    "partial_rotary_factor": 0.25,
+    "mrope_interleaved": true,
+    "mrope_section": [11, 11, 10]
+  }
+}
+```
+
+## Architecture Summary
+
+| Component                     | Configuration       |
+| ----------------------------- | ------------------- |
+| Transformer layers            | 48                  |
+| Linear/sequence-mixing layers | 36                  |
+| Full-attention layers         | 12                  |
+| Native context                | 262,144             |
+| Extended context              | 1,048,576           |
+| YaRN factor                   | 4×                  |
+| RoPE θ                        | 50,000,000          |
+| Partial rotary factor         | 0.25                |
+| MRoPE sections                | `[11, 11, 10]`      |
+| MoE experts                   | 512                 |
+| Experts per token             | 10                  |
+| Activation                    | `gelu_pytorch_tanh` |
+| KV heads                      | 2                   |
+| Attention heads               | 24                  |
+| Head dimension                | 256                 |
+
+## High-Level Flow
+
+```text
+TEXT
+ │
+ ▼
+TOKENIZER
+ │
+ ▼
+EMBEDDINGS
+ │
+ ▼
+┌───────────────────────────────┐
+│       HYBRID TRANSFORMER      │
+│                               │
+│  Linear Attention ─────────┐  │
+│                            │  │
+│  Full Attention ───────────┤  │
+│                            │  │
+│  MRoPE + YaRN ─────────────┤  │
+│                            │  │
+│  Sparse MoE ───────────────┤  │
+│                            │  │
+│  GELU ─────────────────────┘  │
+└───────────────┬───────────────┘
+                │
+                ▼
+          NORMALIZATION
+                │
+                ▼
+             LM HEAD
+                │
+                ▼
+             LOGITS
+                │
+                ▼
+          NEXT TOKEN
+```
+
+> **Qwen4's key idea:** combine efficient sequence processing with a smaller number of full-attention layers, while using sparse MoE computation and extended RoPE/YaRN context handling.
+
+
+That gives you a **plain Markdown architecture diagram + configuration table**, suitable for `README.md`, `docs/architecture.md`, or the model repository. 🚀
+```
+
 ### 1. Input → Token Embeddings
 
 The text enters as token IDs:
