@@ -7,7 +7,7 @@
     "model_type": "qwen4_exp",
     "text_config": {
         "attention_bias": false,
-        "attention_dropout": 0.0,
+        "attention_dropout": 0,
         "bos_token_id": 248044,
         "dtype": "bfloat16",
         "eos_token_id": 248044,
@@ -71,6 +71,7 @@
             "full_attention",
             "linear_attention",
             "linear_attention",
+            "linear_attention",
             "full_attention"
         ],
         "linear_conv_kernel_dim": 4,
@@ -110,7 +111,7 @@
         "ple_layer_ids": [
             2
         ],
-        "rms_norm_eps": 1e-06,
+        "rms_norm_eps": 0.000001,
         "rope_parameters": {
             "mrope_interleaved": true,
             "mrope_section": [
@@ -121,7 +122,7 @@
             "partial_rotary_factor": 0.25,
             "rope_theta": 50000000,
             "rope_type": "yarn",
-            "factor": 4.0,
+            "factor": 4,
             "original_max_position_embeddings": 262144
         },
         "router_aux_loss_coef": 0.001,
