@@ -1,4 +1,5 @@
 ---
+model-name: qwen4
 library_name: transformers
 license: other
 license_name: qwen-community-1.0
