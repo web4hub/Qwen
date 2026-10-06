@@ -373,7 +373,7 @@ messages = [
 ]
 
 completion = client.chat.completions.create(
-    model="Qwen/Qwen3.8-Flash-Next",
+    model="Qwen4/Qwen3.8-Flash-Next",
     messages=messages,
     extra_body={
         "chat_template_kwargs": {
@@ -450,7 +450,7 @@ messages = [
 ]
 
 chat_response = client.chat.completions.create(
-    model="Qwen/Qwen3.8-Flash-Next",
+    model="Qwen4/Qwen3.8-Flash-Next",
     messages=messages,
 )
 print("Chat response:", chat_response)
@@ -482,7 +482,7 @@ messages = [
 ]
 
 chat_response = client.chat.completions.create(
-    model="Qwen/Qwen3.8-Flash-Next",
+    model="Qwen4/Qwen3.8-Flash-Next",
     messages=messages,
 )
 
@@ -533,7 +533,7 @@ messages = [
 ]
 
 chat_response = client.chat.completions.create(
-    model="Qwen/Qwen3.8-Flash-Next",
+    model="Qwen4/Qwen3.8-Flash-Next",
     messages=messages,
     temperature=0.7,
     top_p=0.8,
@@ -655,18 +655,18 @@ To achieve optimal performance, we recommend the following settings:
 If you find our work helpful, feel free to give us a cite.
 
 ```bibtex
-@techreport{qwen2026design,
-    title       = {On the Design of {Qwen3.8-Next} Architecture: Evaluation, Efficiency, and Training Stability},
-    author      = {{Qwen Team}},
-    institution = {Alibaba Group},
+@techreport{qwen42026design,
+    title       = {On the Design of {Qwen4} Architecture: Evaluation, Efficiency, and Training Stability},
+    author      = {{Seriki Walter Yakub,Qwen4 Team}},
+    institution = {Qubuhub},
     month       = {August},
     year        = {2026}
 }
 
-@misc{qwen3.8flashnext,
-    title  = {{Qwen3.8-Flash-Next}: A New Architecture, Towards Ultimate Cost-Efficiency},
-    author = {{Qwen Team}},
-    month  = {August},
+@misc{qwen4,
+    title  = {{Qwen4t}: A New Architecture, Towards Ultimate Cost-Efficiency},
+    author = {{Seriki Walter yakub}},
+    month  = {September},
     year   = {2026},
     url    = {https://qwen.ai/blog?id=qwen3.8-flash-next}
 }
