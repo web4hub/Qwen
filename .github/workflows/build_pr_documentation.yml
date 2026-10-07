@@ -1,0 +1,22 @@
+name: Build PR Documentation
+
+on:
+  pull_request:
+    paths:
+      - "docs/hub/**"
+      - ".github/workflows/build_pr_documentation.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: web4hub/Hubdocs/.github/workflows/build_pr_documentation.yml@test-install-deps-with-uv
+    with:
+      commit_sha: ${{ github.event.pull_request.head.sha }}
+      pr_number: ${{ github.event.number }}
+      package: hubdocs
+      package_name: hub
+      path_to_docs: hub-docs/docs/hub/
+      additional_args: --not_python_module
