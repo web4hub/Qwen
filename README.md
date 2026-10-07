@@ -352,7 +352,44 @@ Qwen3.8-Flash-Next can be deployed with popular inference frameworks, e.g.:
 > - Instruct (or non-thinking) mode: `temperature=0.7`, `top_p=0.80`, `top_k=20`, `min_p=0.0`, `presence_penalty=1.5`, `repetition_penalty=1.0`
 >
 > Please note that the support for sampling parameters varies according to inference frameworks.
+> 
+ ## text-completion
+```python
+from openai import OpenAI
 
+# Initialize the client (Make sure your environment variables are set)
+client = OpenAI()
+
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {
+                "type": "image_url",
+                "image_url": {
+                    "url": "https://aliyuncs.com"
+                }
+            },
+            {
+                "type": "text",
+                "text": "Analyze this geometric chart step-by-step and provide the calculations."
+            }
+        ]
+    }
+]
+
+chat_response = client.chat.completions.create(
+    model="Qwen4/Qwen3.8-Flash-Next",
+    messages=messages,
+    temperature=0.7,
+    top_p=0.8,
+    extra_body={
+        "chat_template_kwargs": {"enable_thinking": False} # Direct answer mode
+    }
+)
+
+print("Chat response:", chat_response.choices[0].message.content)
+```
 > [!Tip]
 > In multi-turn agentic tasks, lower reasoning effort does not always reduce overall task completion time. Although it may produce faster per-turn responses, it can also lead to insufficient analysis, more failures, and repeated retries, which may increase total latency and token consumption.
 
