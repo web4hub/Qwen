@@ -52,3 +52,9 @@ pip install black watchdog
 
 # run `doc-builder preview` cmd
 doc-builder preview hub {YOUR_PATH}/hub-docs/docs/hub/ --not_python_module
+
+
+uv pip install sglang sglang-kernel \
+  --extra-index-url https://sgl-project.github.io/whl/cu130/ \
+  --extra-index-url https://download.pytorch.org/whl/cu130 \
+  --index-strategy unsafe-best-match
