@@ -1,0 +1,171 @@
+Collecting environment information...
+==============================
+        System Info
+==============================
+OS                           : Ubuntu 22.04.5 LTS (x86_64)
+GCC version                  : (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0
+Clang version                : Could not collect
+CMake version                : Could not collect
+Libc version                 : glibc-2.35
+
+==============================
+       PyTorch Info
+==============================
+PyTorch version              : 2.9.1+cu129
+Is debug build               : False
+CUDA used to build PyTorch   : 12.9
+ROCM used to build PyTorch   : N/A
+
+==============================
+      Python Environment
+==============================
+Python version               : 3.12.12 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 20:16:04) [GCC 11.2.0] (64-bit runtime)
+Python platform              : Linux-6.8.0-101-generic-x86_64-with-glibc2.35
+
+==============================
+       CUDA / GPU Info
+==============================
+Is CUDA available            : True
+CUDA runtime version         : Could not collect
+CUDA_MODULE_LOADING set to   : 
+GPU models and configuration : GPU 0: NVIDIA GeForce RTX 4090
+Nvidia driver version        : 580.126.09
+cuDNN version                : Could not collect
+HIP runtime version          : N/A
+MIOpen runtime version       : N/A
+Is XNNPACK available         : True
+
+==============================
+          CPU Info
+==============================
+Arquitectura:                            x86_64
+modo(s) de operación de las CPUs:        32-bit, 64-bit
+Address sizes:                           39 bits physical, 48 bits virtual
+Orden de los bytes:                      Little Endian
+CPU(s):                                  28
+Lista de la(s) CPU(s) en línea:          0-27
+ID de fabricante:                        GenuineIntel
+Nombre del modelo:                       Intel(R) Core(TM) i7-14700KF
+Familia de CPU:                          6
+Modelo:                                  183
+Hilo(s) de procesamiento por núcleo:     2
+Núcleo(s) por «socket»:                  20
+«Socket(s)»                              1
+Revisión:                                1
+CPU MHz máx.:                            5600,0000
+CPU MHz mín.:                            800,0000
+BogoMIPS:                                6835.20
+Indicadores:                             fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdseed adx smap clflushopt clwb intel_pt sha_ni xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk avx_vnni dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req hfi vnmi umip pku ospke waitpkg gfni vaes vpclmulqdq rdpid movdiri movdir64b fsrm md_clear serialize arch_lbr ibt flush_l1d arch_capabilities ibpb_exit_to_user
+Virtualización:                          VT-x
+Caché L1d:                               768 KiB (20 instances)
+Caché L1i:                               1 MiB (20 instances)
+Caché L2:                                28 MiB (11 instances)
+Caché L3:                                33 MiB (1 instance)
+Modo(s) NUMA:                            1
+CPU(s) del nodo NUMA 0:                  0-27
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Reg file data sampling:    Mitigation; Clear Register File
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI BHI_DIS_S
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Mitigation; IBPB before exit to userspace
+
+==============================
+Versions of relevant libraries
+==============================
+[pip3] flashinfer-python==0.6.1
+[pip3] numpy==2.2.6
+[pip3] nvidia-cublas-cu12==12.9.1.4
+[pip3] nvidia-cuda-cupti-cu12==12.9.79
+[pip3] nvidia-cuda-nvrtc-cu12==12.9.86
+[pip3] nvidia-cuda-runtime-cu12==12.9.79
+[pip3] nvidia-cudnn-cu12==9.10.2.21
+[pip3] nvidia-cudnn-frontend==1.18.0
+[pip3] nvidia-cufft-cu12==11.4.1.4
+[pip3] nvidia-cufile-cu12==1.14.1.1
+[pip3] nvidia-curand-cu12==10.3.10.19
+[pip3] nvidia-cusolver-cu12==11.7.5.82
+[pip3] nvidia-cusparse-cu12==12.5.10.65
+[pip3] nvidia-cusparselt-cu12==0.7.1
+[pip3] nvidia-cutlass-dsl==4.4.0
+[pip3] nvidia-cutlass-dsl-libs-base==4.4.0
+[pip3] nvidia-ml-py==13.590.48
+[pip3] nvidia-nccl-cu12==2.27.5
+[pip3] nvidia-nvjitlink-cu12==12.9.86
+[pip3] nvidia-nvshmem-cu12==3.3.20
+[pip3] nvidia-nvtx-cu12==12.9.79
+[pip3] pyzmq==27.1.0
+[pip3] torch==2.9.1+cu129
+[pip3] torch_c_dlpack_ext==0.1.5
+[pip3] torchaudio==2.9.1+cu129
+[pip3] torchcodec==0.9.1
+[pip3] torchvision==0.24.1+cu129
+[pip3] transformers==4.57.6
+[pip3] triton==3.5.1
+[conda] flashinfer-python                    0.6.1            pypi_0           pypi
+[conda] numpy                                2.2.6            pypi_0           pypi
+[conda] nvidia-cublas-cu12                   12.9.1.4         pypi_0           pypi
+[conda] nvidia-cuda-cupti-cu12               12.9.79          pypi_0           pypi
+[conda] nvidia-cuda-nvrtc-cu12               12.9.86          pypi_0           pypi
+[conda] nvidia-cuda-runtime-cu12             12.9.79          pypi_0           pypi
+[conda] nvidia-cudnn-cu12                    9.10.2.21        pypi_0           pypi
+[conda] nvidia-cudnn-frontend                1.18.0           pypi_0           pypi
+[conda] nvidia-cufft-cu12                    11.4.1.4         pypi_0           pypi
+[conda] nvidia-cufile-cu12                   1.14.1.1         pypi_0           pypi
+[conda] nvidia-curand-cu12                   10.3.10.19       pypi_0           pypi
+[conda] nvidia-cusolver-cu12                 11.7.5.82        pypi_0           pypi
+[conda] nvidia-cusparse-cu12                 12.5.10.65       pypi_0           pypi
+[conda] nvidia-cusparselt-cu12               0.7.1            pypi_0           pypi
+[conda] nvidia-cutlass-dsl                   4.4.0            pypi_0           pypi
+[conda] nvidia-cutlass-dsl-libs-base         4.4.0            pypi_0           pypi
+[conda] nvidia-ml-py                         13.590.48        pypi_0           pypi
+[conda] nvidia-nccl-cu12                     2.27.5           pypi_0           pypi
+[conda] nvidia-nvjitlink-cu12                12.9.86          pypi_0           pypi
+[conda] nvidia-nvshmem-cu12                  3.3.20           pypi_0           pypi
+[conda] nvidia-nvtx-cu12                     12.9.79          pypi_0           pypi
+[conda] pyzmq                                27.1.0           pypi_0           pypi
+[conda] torch                                2.9.1+cu129      pypi_0           pypi
+[conda] torch-c-dlpack-ext                   0.1.5            pypi_0           pypi
+[conda] torchaudio                           2.9.1+cu129      pypi_0           pypi
+[conda] torchcodec                           0.9.1            pypi_0           pypi
+[conda] torchvision                          0.24.1+cu129     pypi_0           pypi
+[conda] transformers                         4.57.6           pypi_0           pypi
+[conda] triton                               3.5.1            pypi_0           pypi
+
+==============================
+         vLLM Info
+==============================
+ROCM Version                 : Could not collect
+vLLM Version                 : 0.15.1
+vLLM Build Flags:
+  CUDA Archs: Not Set; ROCm: Disabled
+GPU Topology:
+  	GPU0	CPU Affinity	NUMA Affinity	GPU NUMA ID
+GPU0	 X 	0-27	0		N/A
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+
+==============================
+     Environment Variables
+==============================
+PYTORCH_NVML_BASED_CUDA_CHECK=1
+TORCHINDUCTOR_COMPILE_THREADS=1
