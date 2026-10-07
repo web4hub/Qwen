@@ -1,4 +1,12 @@
-git clone https://github.com/web4hub/Qwen4.git
+curl http://localhost:30000/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "MODEL_PATH",
+    "messages": [
+      {"role": "user", "content": "What is the capital of France?"}
+    ]
+  }'
+man git-clone https://github.com/web4hub/Qwen4.git
 cd Qwen4
 
 python -m venv .venv
