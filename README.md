@@ -6,8 +6,10 @@ license_name: qwen-community-1.0
 license_link: LICENSE
 pipeline_tag: image-text-to-text
 ---
+[![Validate Qwen4 configuration](https://github.com/web4hub/Qwen4/actions/workflows/validate-config.yml/badge.svg)](https://github.com/web4hub/Qwen4/actions/workflows/validate-config.yml)
 
-[# Qwen4](https://huggingface.co/buckets/Seriki/Qwen3.8-3.6-27B-blend-GGUF-bucket)
+> [# Qwen4](https://huggingface.co/buckets/Seriki/Qwen3.8-3.6-27B-blend-GGUF-bucket)
+
 > [!Note]
 > This repository contains model weights and configuration files for the post-trained model in the Hugging Face Transformers format. 
 >
