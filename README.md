@@ -795,6 +795,6 @@ If you find our work helpful, feel free to give us a cite.
     author = {{Seriki Walter yakub}},
     month  = {September},
     year   = {2026},
-    url    = {https://qwen.ai/blog?id=qwen3.8-flash-next}
+    url    = {https://qwenwork.ai/id=qwencloud}
 }
 ```
